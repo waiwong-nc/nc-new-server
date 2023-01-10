@@ -7,15 +7,16 @@ const commentsRoute = require("./router/comments");
 const apiControllers = require("./controllers/api");
 const errorHandlers = require("./controllers/errors");
 const cors = require("cors");
-
+app.use(cors());
 app.use(Express.json());
+
 
 app.get("/api", apiControllers.getDescription);
 app.use("/api/topics", topicsRoute);
 app.use("/api/articles", articlesRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/comments", commentsRoute);
-app.use(cors());
+
 
 app.all("*", errorHandlers.handle404Paths);
 app.use(errorHandlers.handleCustomErrors);
